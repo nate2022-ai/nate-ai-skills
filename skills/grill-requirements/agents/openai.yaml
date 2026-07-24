@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求榨干"
+  short_description: "逐个追问所有关键决策，形成可确认、可执行、可验收的完整详细规划"
+  default_prompt: "使用 $grill-requirements 逐个追问我的需求；每题给出你的推荐答案，达成共同理解后输出事无巨细且可验收的规划。"

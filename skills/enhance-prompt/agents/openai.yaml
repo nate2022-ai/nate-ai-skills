@@ -1,0 +1,4 @@
+interface:
+  display_name: "提示词增强"
+  short_description: "把粗略需求整理成清晰、可执行、可验收且不改变原意的提示词"
+  default_prompt: "使用 $enhance-prompt 把我接下来提供的粗略需求整理成清晰、可执行、可验收的提示词；如果是新对话且模型选择明显影响效果，顺带给出简短模型建议。"
