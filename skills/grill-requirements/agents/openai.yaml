@@ -1,4 +1,4 @@
 interface:
   display_name: "需求榨干"
-  short_description: "逐个追问所有关键决策，形成可确认、可执行、可验收的完整详细规划"
-  default_prompt: "使用 $grill-requirements 逐个追问我的需求；每题给出你的推荐答案，达成共同理解后输出事无巨细且可验收的规划。"
+  short_description: "先校准真实目标，再研究规划与执行任务书；明确选择后分流正式任务与 Goal"
+  default_prompt: "使用 $grill-requirements 默认先核对模式与事实并校准真实目标；仅在高影响不确定时展示双向钢人并只问一个关键问题。目标收口后生成规划或明确请求的执行任务书，交付后按我的明确选择分流正式主任务。"
