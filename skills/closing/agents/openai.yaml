@@ -1,0 +1,4 @@
+interface:
+  display_name: "收尾 Closing"
+  short_description: "核对成果与遗留问题，简单问题当场处理，复杂问题确认后准备交接"
+  default_prompt: "使用 $closing 完成本任务收尾。"

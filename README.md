@@ -12,8 +12,9 @@
 |---|---|---|
 | [需求榨干](skills/grill-requirements/) | `grill-requirements` | 把模糊、复杂或高风险的需求，转成有证据、有取舍、可验收的规划或 AI 执行任务书 |
 | [提示词增强](skills/enhance-prompt/) | `enhance-prompt` | 在不改变原意和任务性质的前提下，把粗略表达整理成清晰、可复制、可验收的提示词 |
+| [收尾](skills/closing/) | `closing` | 核对实际成果、未完事项和材料去向，用最小必要信息完成结束或交接 |
 
-两个 Skill 都使用稳定的英文目录名和运行名；`agents/openai.yaml` 提供中文显示名。
+三个 Skill 都使用稳定的英文目录名和运行名；`agents/openai.yaml` 提供中文显示名。
 
 ## 需求榨干解决什么问题
 
@@ -160,11 +161,12 @@ AI 会进入任务书模式，冻结验收口径，写清白名单、基线、�
 
 - skills/grill-requirements
 - skills/enhance-prompt
+- skills/closing
 
-请复制完整 Skill 目录，保留 SKILL.md、agents/openai.yaml 和 references；安装后确认两个 Skill 都能被发现。不要修改英文目录名或 SKILL.md 中的 name。
+请复制完整 Skill 目录，保留 SKILL.md、agents/openai.yaml 和 references；安装后确认所选 Skill 都能被发现。不要修改英文目录名或 SKILL.md 中的 name。
 ```
 
-只需要一个 Skill 时，删除另一项即可。
+只需要其中部分 Skill 时，保留需要的安装项即可。
 
 ### 方法二：手动安装到当前用户
 
@@ -173,6 +175,7 @@ git clone https://github.com/nate2022-ai/nate-ai-skills.git
 mkdir -p "$HOME/.agents/skills"
 cp -R nate-ai-skills/skills/grill-requirements "$HOME/.agents/skills/"
 cp -R nate-ai-skills/skills/enhance-prompt "$HOME/.agents/skills/"
+cp -R nate-ai-skills/skills/closing "$HOME/.agents/skills/"
 ```
 
 ### 方法三：只给一个项目使用
@@ -192,6 +195,7 @@ cp -R nate-ai-skills/skills/enhance-prompt "$HOME/.agents/skills/"
 ```text
 $grill-requirements
 $enhance-prompt
+$closing
 ```
 
 自然语言也可以触发，例如：
@@ -219,7 +223,25 @@ $enhance-prompt
 [粘贴原始需求]
 ```
 
-## 当前版更新（2026-08-18）
+## 收尾
+
+「收尾」用于任务正常结束，或中途停下并整理接续。它核对实际成果、未完与阻碍、敏感及真实动作、遗留材料、接续与整体目标；简单任务不强制生成长报告或交接文件。
+
+```text
+使用 $closing 收尾：核对已完成和未完成的内容，处理当前授权范围内的遗留，并给出必要的接续入口。
+```
+
+单纯要求停止、暂停或反馈卡顿，不触发收尾。中途收尾时停止原业务推进；收尾完成不代表业务目标已完成。
+
+本公开版包含完整的 `SKILL.md`、界面说明和四份按需分支，可单独安装。项目路由、经验保存与清理权限使用安装者自己的约定；安装 Skill 不授予删除、外部发送、系统写入或创建自动化的权限。未配置经验位置时仅在对话中说明。`grill-requirements` 是可选的复杂规划能力，不是使用收尾的前置依赖。
+
+## 当前版更新（2026-09-10）
+
+- 新增「收尾」及其接续、分流、清理和自动化复盘分支。
+- 移除内部用户名、项目路径、固定归口和私有维护历史；清理遵守当前用户的明确授权。
+- 补充收尾安装、调用和适用边界，原有两个 Skill 的运行文件未变。
+
+## 历史更新（2026-08-18）
 
 本次主要升级 `grill-requirements`：
 
@@ -249,14 +271,22 @@ nate-ai-skills/
     │   └── references/
     │       ├── final-plan-template.md
     │       └── execution-task-brief-template.md
-    └── enhance-prompt/
+    ├── enhance-prompt/
+    │   ├── SKILL.md
+    │   └── agents/openai.yaml
+    └── closing/
         ├── SKILL.md
-        └── agents/openai.yaml
+        ├── agents/openai.yaml
+        └── references/
+            ├── handoff-and-goals.md
+            ├── routing-and-writing.md
+            ├── cleanup.md
+            └── automation-review.md
 ```
 
 ## 建立缘起
 
-这两个 Skill 来自长期、高频的中文 Codex 协作。后来我在抖音分享「需求榨干」的使用思路，评论区陆续有人希望获得工具，因此建立并公开了这个仓库。
+最初的两个 Skill 来自长期、高频的中文 Codex 协作。后来我在抖音分享「需求榨干」的使用思路，评论区陆续有人希望获得工具，因此建立并公开了这个仓库。
 
 ![Codex 使用记录](assets/codex-usage-overview.png)
 
