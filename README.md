@@ -13,7 +13,7 @@
 | [收尾](skills/closing/) | `closing` | 核对成果、未完事项和材料去向，完成结束或交接 |
 | [界面设计](skills/interface-design/) | `interface-design` | 设计、审查、改造和验收界面，按需检索设计奖与相似案例 |
 
-英文目录名和 `name` 保持稳定；`agents/openai.yaml` 提供中文界面说明。四个 Skill 可以分别安装。
+英文目录名和 `name` 保持稳定；`agents/openai.yaml` 提供中文界面说明。四个 Skill 可以分别安装。第一次查看仓库，可以先读[目录与文件夹作用](#目录与文件夹作用)。
 
 ## 需求榨干怎样工作
 
@@ -127,7 +127,7 @@ flowchart TD
 - skills/closing
 - skills/interface-design
 
-复制所选 Skill 的完整目录，保留 SKILL.md、agents 和 references；
+复制所选 Skill 的完整目录，保留主入口及全部配套文件；
 保持英文目录名与 name 不变，并确认安装入口可发现。
 ```
 
@@ -202,7 +202,6 @@ $interface-design
 
 ### 2026-09-21
 
-
 - 补充需求榨干的显式触发说明：直接发送“需求榨干”或“把需求问透”即可触发。
 - 同步两个 Skill 的经验维护说明：复用既有方法记录的相关主题；需求榨干在研究阶段仅于对话保留发现，已有实施授权后才按指定位置留证。
 - 保留公开版的通用项目路由和授权边界，不携带内部经验路径或私人持续授权。
@@ -222,47 +221,89 @@ $interface-design
 - **2026-09-11**：新增收尾通用公开版及安装说明（候选准备于 2026-09-10）。
 - **2026-08-18**：需求榨干引入条件式目标校准、研究规划与任务书双模式、执行边界和第三方归因。
 
-## 目录结构
+## 目录与文件夹作用
+
+仓库根目录的README负责介绍整套工具；真正安装的是`skills/`里的某个完整Skill目录。可以只安装需要的一个，也可以分别组合使用，不要求按固定顺序执行。
 
 ```text
 nate-ai-skills/
-├── .gitignore
-├── README.md
-├── LICENSE
-├── THIRD_PARTY_NOTICES.md
-├── assets/
-│   ├── codex-usage-overview.png
-│   └── douyin-request-redacted.png
-└── skills/
-    ├── grill-requirements/
+├── README.md                    仓库总说明、使用示例和安装入口
+├── LICENSE                      仓库的MIT许可
+├── THIRD_PARTY_NOTICES.md        第三方方法来源与许可说明
+├── assets/                      本README展示用的图片
+└── skills/                      可分别安装的完整Skill包
+    ├── grill-requirements/       需求榨干：研究问题、澄清取舍、形成规划
     │   ├── SKILL.md
-    │   ├── agents/openai.yaml
+    │   ├── agents/
     │   └── references/
-    │       ├── final-plan-template.md
-    │       ├── execution-task-brief-template.md
-    │       ├── execution-handoff.md
-    │       ├── long-task-continuation.md
-    │       └── task-coordination.md
-    ├── enhance-prompt/
+    ├── enhance-prompt/          提示词增强：把已有需求写清楚
     │   ├── SKILL.md
-    │   └── agents/openai.yaml
-    ├── closing/
+    │   └── agents/
+    ├── closing/                 收尾：核对成果、整理未完与接续
     │   ├── SKILL.md
-    │   ├── agents/openai.yaml
+    │   ├── agents/
     │   └── references/
-    │       ├── handoff-and-goals.md
-    │       ├── routing-and-writing.md
-    │       ├── cleanup.md
-    │       └── automation-review.md
-    └── interface-design/
-        ├── SKILL.md
+    └── interface-design/        界面设计：设计、审查、改造及案例检索
         ├── README.md
+        ├── SKILL.md
         ├── LICENSE
-        ├── agents/openai.yaml
+        ├── agents/
         ├── references/
         ├── research/
-        └── scripts/check_package.py
+        └── scripts/
 ```
+
+### 先选要使用的Skill
+
+| 文件夹 | 解决什么问题 | 典型使用场景与结果 |
+|---|---|---|
+| [skills/grill-requirements](skills/grill-requirements/) | 在动手前查明事实、澄清关键取舍，形成可执行的需求 | “要不要开发这个工具”“先把需求问透”“给另一个AI写任务书”；输出有依据的建议、规划或交接任务书，具体形式沿请求选择 |
+| [skills/enhance-prompt](skills/enhance-prompt/) | 保留已有意图，把粗略表达整理成清晰提示词 | “优化这段提示词”“整理成新对话任务说明”；交付可以复制使用的文字，适合目标已有轮廓时 |
+| [skills/closing](skills/closing/) | 核对实际成果、未完成事项和材料去向，完成结束或交接 | “收尾”“中途停下，整理下一次怎么继续”；给出结果、必要整理和准确接续入口 |
+| [skills/interface-design](skills/interface-design/) | 设计和改进真实界面，按需寻找相似设计参考 | “审查这个页面”“改进手机体验”“参考设计奖找类似案例”；交付方案、审查意见，或授权范围内的实现与验证 |
+
+四个目录各自有`SKILL.md`作为入口。需要两个能力时可以配合使用，例如先澄清需求再做界面设计；不需要的Skill无需为了安装某一个而全部下载到工具的发现目录。
+
+### agents：客户端的显示与调用配置
+
+每个Skill的[agents/openai.yaml](skills/interface-design/agents/openai.yaml)保存Codex显示名称、简短介绍和默认调用提示；此处链接以界面设计为例。普通安装者通常不用修改。想改变显示文字或默认提示，可以在自己的版本里适配，并保持它与实际Skill能力一致。
+
+这里的`agents`不代表配置了一支多代理团队，也不包含自动启动的服务。其他AI工具如何使用这份显示配置，以该工具实际支持方式为准。
+
+### references：AI按任务读取的详细方法
+
+这些文件补充各Skill主入口中的条件分支、操作方法或模板，供AI遇到相应问题时读取。它们与主入口一起组成可用方法，安装时应完整保留。
+
+| 所在目录 | 包含哪些内容 | 什么时候读取 |
+|---|---|---|
+| [grill-requirements/references](skills/grill-requirements/references/) | 完整规划模板、独立执行任务书模板、正式任务交接、长任务接续和任务协作 | 用户确实需要规划、任务书、多阶段接续或分工时；普通简短需求讨论不要求全部加载 |
+| [closing/references](skills/closing/references/) | 交接与Goal、材料路由与写法、清理、自动化核对四类分支 | 收尾涉及相应事项时展开，简单结束沿主入口处理即可 |
+| [interface-design/references](skills/interface-design/references/) | 视觉系统、信息模式、平台适配、交互动效、用户控制、验收、案例检索、来源边界八篇专题 | 按具体设计问题选择，逐篇用途见[界面设计目录说明](skills/interface-design/README.md#references解决当前设计问题的方法) |
+
+提示词增强目前没有`references/`子目录，其方法在自己的`SKILL.md`中。文件夹数量由实际需要决定，不要求每个Skill长成相同结构。
+
+### research：界面设计方法的研究背景
+
+[interface-design/research](skills/interface-design/research/)保留两类脱敏材料：方法如何形成和修正，以及Apple HIG的历史来源与阅读记录。想理解设计选择的来由、追溯来源或继续研究时可以查看，普通使用不要求通读。
+
+`references/`提供当前任务的方法；`research/`解释研究经过、历史覆盖与限制。研究里保留的候选或未验证结论，不会自动变成现行执行要求。这里也不包含作者的私人资料库或第三方完整素材包。
+
+### scripts：界面设计包的维护检查
+
+[interface-design/scripts](skills/interface-design/scripts/)目前只有`check_package.py`，供维护者检查必需文件、本地链接、标题锚点及包外依赖等结构问题。修改目录、移动文件或准备重新分发后，可以按界面设计README中的命令运行。
+
+该检查脚本需要Python 3.9或更新版本；普通调用Skill无需运行脚本。它不会自动搜集获奖网站、评价设计质量或验证所有外链。案例检索由AI按参考方法使用当前环境的搜索和浏览能力完成。
+
+### assets：仓库首页的展示图片
+
+[assets](assets/)存放本README中介绍仓库缘起和使用场景的图片，例如Codex使用记录、已脱敏的分享反馈截图。这些图片用于阅读仓库说明，无需一并复制到每个Skill的安装目录。
+
+### 使用和修改时怎么处理这些目录
+
+- **只想使用：** 选一个Skill，复制它的完整目录，按示例调用。主入口与配套文件一起保留，无需逐个手动加载。
+- **只想改个人习惯：** 把语言、技术栈、审批约定、交付形式和资料保存位置写在当前请求或项目规则中。
+- **想维护自己的版本：** 当前执行方法改对应`SKILL.md`或`references/`，显示文字改`agents/openai.yaml`，研究依据记在自己的研究记录中；文件改名后同步修正引用。
+- **更新已安装Skill：** 先核对本地定制，再更新整个选定目录，避免只换主入口而留下旧参考文件。
 
 ## 建立缘起
 
@@ -286,4 +327,5 @@ nate-ai-skills/
 ## 适用边界
 
 效果取决于模型、上下文、工具权限、资料质量和宿主支持。Skill 不代替专业判断或实际验收；时效性事实、高风险结论和真实系统状态仍需可靠来源与现场验证。
+
 
