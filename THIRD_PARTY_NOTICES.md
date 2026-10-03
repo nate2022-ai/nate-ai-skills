@@ -90,3 +90,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## 界面设计 `interface-design`
+
+本Skill将设计知识与已有方法按任务重新组织为中文工作流程。Apple Human Interface Guidelines是主要知识来源，frontend-design、Impeccable、Emil design-eng、UI/UX Pro Max及Vercel web-design-guidelines提供方法参考；具体固定版本、采用范围、历史许可核查与限制见[来源与转化](skills/interface-design/references/sources.md)。这些来源不是必须安装的运行依赖。
+
+设计奖与优秀案例来自Apple Design Awards、Awwwards、CSS Design Awards、UX Design Awards及Red Dot等官方来源；身份核实与适用边界见[设计案例检索](skills/interface-design/references/design-case-research.md)。
+
+本包提供自主整理、来源链接和脱敏研究，未整篇分发上游Skill正文或脚本，也未捆绑第三方完整网页、图片、视频、字体或UI Kits。仓库MIT许可适用于本仓库提供的内容，不改变所链接第三方材料、商标及资产的权利。来源引用、公开可读或获奖身份均不表示获得第三方素材的转载授权。
+

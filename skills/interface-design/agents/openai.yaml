@@ -1,0 +1,4 @@
+interface:
+  display_name: "界面设计"
+  short_description: "设计与改进网页、移动端和桌面界面，按需检索设计奖及相似案例"
+  default_prompt: "使用 $interface-design，根据当前任务设计、审查、改造或验收界面；需要参考时检索设计奖和相似案例，说明可借鉴之处；主要方案先给出可确认的具体草稿。"

@@ -1,6 +1,6 @@
 # Nate AI Skills
 
-三个从中文 AI 工作流中持续打磨的 Agent Skills：需求榨干、提示词增强和收尾。
+四个从中文 AI 工作流中持续打磨的 Agent Skills：需求榨干、提示词增强、收尾和界面设计。
 
 「需求榨干」帮助 AI 自行解决能查明、能安全验证或有可靠默认的问题，把用户的注意力留给真实意图、关键取舍和风险决定。目标是减少无意义的往返，同时保留必要的授权与验收边界。
 
@@ -11,8 +11,9 @@
 | [需求榨干](skills/grill-requirements/) | `grill-requirements` | 澄清真实需求，形成有依据、可验收的规划或独立执行任务书 |
 | [提示词增强](skills/enhance-prompt/) | `enhance-prompt` | 保留原意，把粗略表达整理成清晰、可复制的提示词 |
 | [收尾](skills/closing/) | `closing` | 核对成果、未完事项和材料去向，完成结束或交接 |
+| [界面设计](skills/interface-design/) | `interface-design` | 设计、审查、改造和验收界面，按需检索设计奖与相似案例 |
 
-英文目录名和 `name` 保持稳定；`agents/openai.yaml` 提供中文界面说明。三个 Skill 可以分别安装。
+英文目录名和 `name` 保持稳定；`agents/openai.yaml` 提供中文界面说明。四个 Skill 可以分别安装。
 
 ## 需求榨干怎样工作
 
@@ -124,6 +125,7 @@ flowchart TD
 - skills/grill-requirements
 - skills/enhance-prompt
 - skills/closing
+- skills/interface-design
 
 复制所选 Skill 的完整目录，保留 SKILL.md、agents 和 references；
 保持英文目录名与 name 不变，并确认安装入口可发现。
@@ -141,6 +143,7 @@ mkdir -p "$HOME/.agents/skills"
 cp -R nate-ai-skills/skills/grill-requirements "$HOME/.agents/skills/"
 cp -R nate-ai-skills/skills/enhance-prompt "$HOME/.agents/skills/"
 cp -R nate-ai-skills/skills/closing "$HOME/.agents/skills/"
+cp -R nate-ai-skills/skills/interface-design "$HOME/.agents/skills/"
 ```
 
 只给某个项目使用时，将所需完整 Skill 目录放入该项目的 `.agents/skills/`。安装器选择的用户级位置可能不同，以实际安装结果为准；避免为同一个 Skill 建立多个独立维护副本。
@@ -155,6 +158,7 @@ cp -R nate-ai-skills/skills/closing "$HOME/.agents/skills/"
 $grill-requirements
 $enhance-prompt
 $closing
+$interface-design
 ```
 
 ## 提示词增强
@@ -179,7 +183,25 @@ $closing
 
 单纯要求停止、暂停或反馈卡顿，不触发收尾。公开版包含主入口、界面配置和四份按需分支，可单独安装；清理、经验保存和外部动作遵守安装者自己的授权。`grill-requirements` 是可选的复杂规划能力，不是收尾的安装前提。
 
-## 本次更新（2026-09-21）
+## 界面设计
+
+按实际内容和平台完成界面设计、审查、改造与验收。需要参考时，从Apple Design Awards、Awwwards、CSS Design Awards、UX Design Awards和Red Dot等来源查找相似案例，核实身份并提炼可迁移的方法。
+
+```text
+使用 $interface-design，为这个数据工作台查找类似的优秀设计案例，
+说明值得借鉴的布局与交互、当前项目如何适配，以及哪些部分尚未验证。
+```
+
+完整方法、八篇按需参考、脱敏研究、历史Apple来源记录和许可均在同一目录内；不依赖作者的私人规则或素材库。安装者可按自己的工具、项目规则和习惯适配，见[界面设计使用说明](skills/interface-design/README.md)。
+
+## 本次更新（2026-10-03）
+
+- 新增可单独安装的界面设计Skill，包含设计奖与相似案例检索。
+- 随包提供公开研究经过、来源导航、完整性检查和MIT许可。
+- 保留证据边界：案例检索试用完成新搜索与官方文字核查，图像与真实交互未在该试用中验证；不宣称所有AI客户端和平台都已实测。
+
+### 2026-09-21
+
 
 - 补充需求榨干的显式触发说明：直接发送“需求榨干”或“把需求问透”即可触发。
 - 同步两个 Skill 的经验维护说明：复用既有方法记录的相关主题；需求榨干在研究阶段仅于对话保留发现，已有实施授权后才按指定位置留证。
@@ -224,14 +246,22 @@ nate-ai-skills/
     ├── enhance-prompt/
     │   ├── SKILL.md
     │   └── agents/openai.yaml
-    └── closing/
+    ├── closing/
+    │   ├── SKILL.md
+    │   ├── agents/openai.yaml
+    │   └── references/
+    │       ├── handoff-and-goals.md
+    │       ├── routing-and-writing.md
+    │       ├── cleanup.md
+    │       └── automation-review.md
+    └── interface-design/
         ├── SKILL.md
+        ├── README.md
+        ├── LICENSE
         ├── agents/openai.yaml
-        └── references/
-            ├── handoff-and-goals.md
-            ├── routing-and-writing.md
-            ├── cleanup.md
-            └── automation-review.md
+        ├── references/
+        ├── research/
+        └── scripts/check_package.py
 ```
 
 ## 建立缘起
@@ -256,3 +286,4 @@ nate-ai-skills/
 ## 适用边界
 
 效果取决于模型、上下文、工具权限、资料质量和宿主支持。Skill 不代替专业判断或实际验收；时效性事实、高风险结论和真实系统状态仍需可靠来源与现场验证。
+
